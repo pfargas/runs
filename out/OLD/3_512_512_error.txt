@@ -1,0 +1,34 @@
+  0%|          | 0/5000 [00:00<?, ?it/s]2026-01-29 20:07:23.758200: W external/xla/xla/hlo/transforms/simplifiers/hlo_rematerialization.cc:3425] Can't reduce memory use below 5.54GiB (5943423177 bytes) by rematerialization; only reduced to 9.54GiB (10247377116 bytes), down from 9.54GiB (10249383248 bytes) originally
+2026-01-29 20:07:35.027857: W external/xla/xla/tsl/framework/bfc_allocator.cc:501] Allocator (GPU_0_bfc) ran out of memory trying to allocate 8.58GiB (rounded to 9216007680)requested by op 
+If the cause is memory fragmentation maybe the environment variable 'TF_GPU_ALLOCATOR=cuda_malloc_async' will improve the situation. 
+Current allocation summary follows.
+Current allocation summary follows.
+2026-01-29 20:07:35.027940: W external/xla/xla/tsl/framework/bfc_allocator.cc:512] *___________________________________________________________________________________________________
+E0129 20:07:35.027962   11724 pjrt_stream_executor_client.cc:2939] Execution of replica 0 failed: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 9216007520 bytes. [tf-allocator-allocation-error='']
+  0%|          | 0/5000 [00:22<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/pau/software/anaconda3/envs/jax/bin/qvarnet", line 7, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/pau/PhD/qvarnet/src/qvarnet/cli/run.py", line 221, in main
+    run_experiment(cli)
+    ~~~~~~~~~~~~~~^^^^^
+  File "/home/pau/PhD/qvarnet/src/qvarnet/cli/run.py", line 279, in run_experiment
+    run_experiment_main(cli, profile=cli.config.data.get("profile", False))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pau/PhD/qvarnet/src/qvarnet/main.py", line 64, in run_experiment
+    params_fin, energy_hist, _, best_energy = train(
+                                              ~~~~~^
+        n_epochs=train_args["num_epochs"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        split_sampler=args.args.split,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/pau/PhD/qvarnet/src/qvarnet/train.py", line 266, in train
+    state, energy = train_step(state, batch)
+                    ~~~~~~~~~~^^^^^^^^^^^^^^
+jaxlib._jax.XlaRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 9216007520 bytes.
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.

@@ -1,0 +1,2 @@
+experiment.name=3d_16_16_hidden
+model.architecture=[3,16,16,1]
