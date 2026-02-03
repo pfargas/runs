@@ -5,7 +5,7 @@ CONDA_BASE="$HOME/software/anaconda3"
 source "$CONDA_BASE/etc/profile.d/conda.sh"
 conda activate jax
 
-BASE_PATH=$HOME/PhD/3d_runs
+BASE_PATH="$HOME/runs"
 cd $BASE_PATH
 
 # get date and time for unique output folder
@@ -24,6 +24,8 @@ if [ "$(ls -A $OUT_PATH)" ] && [ "$(ls -A $OUT_PATH | grep -v '^[.]$' | grep -v 
     echo "Error: $OUT_PATH is not empty. Please clear it before running the script."
     exit 1
 fi
+
+echo "Starting"
 
 for FILE in "$CONFIGS_PATH"/*.txt; do
     # Skip if no .txt files exist
@@ -47,7 +49,7 @@ for FILE in "$CONFIGS_PATH"/*.txt; do
     TEMP_ERR=$(mktemp)
 
     # Run the command, sending stderr to the temp file
-    qvarnet run -c ./base.json $OVERRIDES 2> "$TEMP_ERR"
+    qvarnet run -c ./base.json $OVERRIDES #2> "$TEMP_ERR"
     EXIT_CODE=$?
 
     # Always show the errors in the terminal regardless of success/fail

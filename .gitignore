@@ -1,0 +1,8 @@
+# folders:
+out/
+old_images/
+configs/
+*.png
+*.jpg
+*.jpeg
+*.gif
