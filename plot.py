@@ -128,6 +128,8 @@ if __name__ == "__main__":
             ax[layer_count - 2].plot(energy_hist, label=f"{architectures_found[i]}")
         else:
             plt.plot(energy_hist, label=f"{architectures_found[i]}")
+    if len(different_layers) == 1:
+        ax = [ax]
     for ax_i in ax:
         ax_i.hlines(
             DoF / 2,
@@ -141,3 +143,4 @@ if __name__ == "__main__":
     fig.supxlabel("Common X-axis Label")
     plt.tight_layout()
     plt.show()
+    plt.savefig("energy_convergence.png")

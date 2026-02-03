@@ -4,9 +4,9 @@ cwd = os.getcwd()
 path = os.path.join(cwd, "configs")
 os.makedirs(path, exist_ok=True)
 
-hidden_units = [2**i for i in range(1, 10)]
+hidden_units = [2**i for i in range(1, 8)]
 layers = [1, 2, 3]
-DoF = 3
+DoF = 4
 
 for l in layers:
     for h in hidden_units:
